@@ -19,5 +19,8 @@ JRecord is not on a public maven repo so I have included the JRecord jars.  To b
 
 After you do that just do maven package and use target/copybookInputFormat.jar
 
+##Credits
+Sekou Mckissick, Susan Greslik, Gwen Shapira, and Ted Malaska
+
 
 
