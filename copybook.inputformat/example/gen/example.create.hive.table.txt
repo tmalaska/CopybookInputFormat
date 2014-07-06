@@ -1,0 +1,14 @@
+ADD JAR copybookInputFormat.jar;
+CREATE EXTERNAL TABLE IF NOT EXISTS copybook_table
+(
+  USER_ID STRING,
+  USER_NAME STRING,
+  USER_AGE STRING,
+  CM00_LAST_FOUR_SSN STRING,
+  CM00_RANDOM_NUM STRING,
+  CM00_RANDOM_STRING STRING
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '1'
+STORED AS INPUTFORMAT 'com.cloudera.sa.copybook.mapred.CopybookInputFormat' OUTPUTFORMAT 'org.apache.hadoop.hive.ql.io.HiveIgnoreKeyTextOutputFormat'
+LOCATION 'copybook/table'
+TBLPROPERTIES ('copybook.inputformat.cbl.hdfs.path' = 'copybook/example.cbl')
