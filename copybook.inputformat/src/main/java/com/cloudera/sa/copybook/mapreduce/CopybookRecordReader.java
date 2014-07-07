@@ -17,10 +17,10 @@ import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.FileSplit;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.RecordReader;
 import org.apache.hadoop.mapreduce.TaskAttemptContext;
+import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 
 import com.cloudera.sa.copybook.Const;
 
@@ -91,7 +91,7 @@ public class CopybookRecordReader extends RecordReader<LongWritable, Text> {
 
   @Override
   public boolean nextKeyValue() throws IOException, InterruptedException {
-    if (pos >= end) {
+    if (pos > end) {
       return false;
     }
 

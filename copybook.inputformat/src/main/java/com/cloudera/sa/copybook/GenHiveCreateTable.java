@@ -11,19 +11,20 @@ import net.sf.JRecord.External.Def.ExternalField;
 import net.sf.JRecord.Numeric.Convert;
 import net.sf.JRecord.Types.Type;
 
-public class GenerateHiveTableDefinitionsFromCopybook {
+public class GenHiveCreateTable {
   public static void main(String[] args) throws Exception {
-    String cbl = "cb.cbl";
-    String outputFile = "cb.create.hive.table.txt";
+    String cbl = "example/example.cbl";
+    String outputFile = "example/gen/example.create.hive.table.txt";
     String tableName = "copybook_table";
     String externalLocation = "copybook/table";
-    String copybookLocation = "copybool/cb.cbl";
+    String copybookLocation = "copybook/example.cbl";
 
     if (args.length == 0) {
       System.out
-          .println("GenerateHiveTableDefinitionsFromCopybook <cbl file> <output file> <tableName> ");
+          .println("GenHiveCreateTable <cbl file> <output file> <tableName> <externalLocation> <copybookHdfsLocation>");
       System.out.println("");
       System.out.println("Using defaults");
+      return;
     } else {
       cbl = args[0];
       outputFile = args[1];

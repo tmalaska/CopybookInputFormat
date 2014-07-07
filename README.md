@@ -25,10 +25,31 @@ After you do that just do maven package and use target/copybookInputFormat.jar
 Sekou Mckissick, Susan Greslik, Gwen Shapira, Jeremy Beard, and Ted Malaska
 
 ##Internal Notes
+java -jar copybookInputFormat.jar GenHiveCreateTable example.cbl createTable.hql exampleTable /user/root/exampleTable /tmp/example.cbl
+
+hive -f createTable.hql
+
+java -jar copybookInputFormat.jar GenTestData example.cbl copyGen/example.dat 100 10
+
+hadoop fs -put copyGen/example.dat /user/root/exampleTable/example.dat
+
+hadoop fs -put example.cbl /tmp/example.cbl
+
+hive
+
 add jar copybookInputFormat.jar;
 
-set copybook.inputformat.cbl.hdfs.path=cb.cbl;
+set copybook.inputformat.cbl.hdfs.path=/tmp/example.cbl;
 
+desc exampleTable;
+
+select * from exampleTable;    
+
+select * from exampleTable where user_id > '570'
+
+hadoop jar SparkCopybookExample.jar com.cloudera.sa.copybook.spark.CopybookSparkExample spark://{host}:7077 hdfs://{host}:8020/tmp/example.cbl hdfs://{host}:8020/user/root/exampleTable hdfs://{host}:8020/user/root/op2
+
+##Extra Notes
 <property>
 <name>hive.aux.jars.path</name>
 <value>hdfs:///user/root/copybook-0.0.1-SNAPSHOT.jar</value>

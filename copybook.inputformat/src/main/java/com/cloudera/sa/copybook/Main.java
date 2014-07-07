@@ -14,13 +14,14 @@ public class Main {
     
     if (args[0].equals("BasicCopybookConvert")) {
       BasicCopybookConvert.main(subArgs);
-    } else if (args[0].equals("GenerateHiveTableDefinitionsFromCopybook")) {
-      GenerateHiveTableDefinitionsFromCopybook.main(subArgs);
+    } else if (args[0].equals("GenHiveCreateTable")) {
+      GenHiveCreateTable.main(subArgs);
     } else if (args[0].equals("PrepCopybook")) {
       PrepCopybook.main(subArgs);
+    } else if (args[0].equals("GenTestData")) {
+      GenTestData.main(subArgs);
     } else {
       printHelp();
-      RCFileInputFormat g;
     }
   }
 
@@ -29,7 +30,8 @@ public class Main {
     System.out.println("Main {command} {command parameters ...}");
     System.out.println("Commands List");
     System.out.println("BasicCopybookConvert: This is will convert a dat file with a cbl definition.  Single threaded.");
-    System.out.println("GenerateHiveTableDefinitionsFromCopybook: This will generate a hive table based on the copy book.");
+    System.out.println("GenHiveCreateTable: This will generate a hive table based on the copy book.");
     System.out.println("PrepCopybook: This will convert the copy book that works with JRecord.");
+    System.out.println("GenTestData: This will use the example copybook and gen some test data.");
   }
 }

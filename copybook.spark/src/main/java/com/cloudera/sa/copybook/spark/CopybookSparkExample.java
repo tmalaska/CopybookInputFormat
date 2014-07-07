@@ -20,6 +20,7 @@ public class CopybookSparkExample {
 		if (args.length == 0) {
 			System.out
 					.println("UniqueSeqGenerator {master} {copybookInputPath} {dataFileInputPath} {outputFolder}");
+			return;
 		}
 
 		String master = args[0];
@@ -28,7 +29,7 @@ public class CopybookSparkExample {
 		String outputPath = args[3];
 
 		JavaSparkContext jsc = new JavaSparkContext(master,
-				"UniqueSeqGenerator", null, "SeqGenerator.jar");
+				"UniqueSeqGenerator", null, "SparkCopybookExample.jar");
 
 		Configuration config = new Configuration();
 		CopybookInputFormat.setCopybookHdfsPath(config, copybookInputPath);
