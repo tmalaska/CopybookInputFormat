@@ -49,6 +49,10 @@ select * from exampleTable where user_id > '570'
 
 hadoop jar SparkCopybookExample.jar com.cloudera.sa.copybook.spark.CopybookSparkExample spark://{host}:7077 hdfs://{host}:8020/tmp/example.cbl hdfs://{host}:8020/user/root/exampleTable hdfs://{host}:8020/user/root/op2
 
+or
+
+java -cp SparkCopybookExample.jar com.cloudera.sa.copybook.spark.CopybookSparkExample spark://{host}:7077 hdfs://{host}:8020/tmp/example.cbl hdfs://{host}:8020/user/root/exampleTable hdfs://{host}:8020/user/root/op3
+
 ##Extra Notes
 <property>
 <name>hive.aux.jars.path</name>

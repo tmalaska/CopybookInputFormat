@@ -1,6 +1,7 @@
 package com.cloudera.sa.copybook.spark;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -19,7 +20,7 @@ public class CopybookSparkExample {
 		}
 		if (args.length == 0) {
 			System.out
-					.println("UniqueSeqGenerator {master} {copybookInputPath} {dataFileInputPath} {outputFolder}");
+					.println("CopybookSparkExample {master} {copybookInputPath} {dataFileInputPath} {outputFolder}");
 			return;
 		}
 
@@ -32,6 +33,10 @@ public class CopybookSparkExample {
 				"UniqueSeqGenerator", null, "SparkCopybookExample.jar");
 
 		Configuration config = new Configuration();
+		config.addResource(new Path("/etc/hadoop/conf/hdfs-site.xml"));
+		config.addResource(new Path("/etc/hadoop/conf/mapred-site.xml"));
+		config.addResource(new Path("/etc/hadoop/conf/yarn-site.xml"));
+		config.addResource(new Path("/etc/hadoop/conf/core-site.xml"));
 		CopybookInputFormat.setCopybookHdfsPath(config, copybookInputPath);
 		
 		JavaPairRDD<LongWritable, Text> rdd = jsc.newAPIHadoopFile(dataFileInputPath, CopybookInputFormat.class, LongWritable.class, Text.class, config);
